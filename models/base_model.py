@@ -1,55 +1,81 @@
 #!/usr/bin/python3
+""" This is the ``base_model`` module
 
-"""This module defines a base class ``BaseModel``
-from which all Airbnb classes inherit attributes and methods"""
+It contains the class `BaseModel`
+"""
 
-from dataclasses import dataclass
-from datetime import datetime
 from uuid import uuid4
+from datetime import datetime
+from models import storage
 
 
-@dataclass(unsafe_hash=True)
 class BaseModel:
-    """Defines a base class for Airbnb objects
-    Attributes:
-        id (str): the universal unique identifier of a BaseModel instance
-        created_at (datetime): the time of creation of a BaseModel instance
-        updated_at (datetime): the last time a BaseModel instance was updated
+    """ This is the class `BaseModel`.
+
+    It defines all common attributes/methods for other classes
     """
 
-    id: str = str(uuid4())
-    created_at: datetime = datetime.now()
-    updated_at: datetime = datetime.now()
+    def __init__(self, *args, **kwargs):
+        """ Runs only once when a new instance is created
+
+        Initializes attributes for every instance of `BaseModel` or sub-classes
+
+        Args:
+            args (tuple): List of positional arguments (unused)
+            kwargs (dict): Key/Value pairs of attribute names and values
+        """
+
+        if kwargs:
+            # Here, if an attribute name we are interested is in kwargs, we use
+            # the value to set our instance attribute
+            # If it is not, we generate the value of our instance attribute
+
+            date_format = "%Y-%m-%dT%H:%M:%S.%f"
+
+            if kwargs["id"]:
+                self.id = kwargs["id"]
+            else:
+                self.id = str(uuid4())
+
+            if kwargs["created_at"]:
+                date_string = kwargs["created_at"]
+                self.created_at = datetime.strptime(date_string, date_format)
+            else:
+                self.created_at = datetime.now()
+
+            if kwargs["updated_at"]:
+                date_string = kwargs["updated_at"]
+                self.updated_at = datetime.strptime(date_string, date_format)
+            else:
+                self.updated_at = datetime.now()
+
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
-        """Updates the string representation of a BaseModel instance
-        Returns:
-            a string representation of a BaseModel instance"""
+        """ Prints out a string representation of the class instance """
 
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
-        """updates the public instance attribute ``updated_at``
-        with the current datetime"""
+        """ Updates the public instance attribute `updated_at`
+
+        This attributes is updated with the current datetime
+        """
+
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
-        """Returns the dctionary representation of an instance"""
+        """ Returns a `dict` of all key/value pairs of the given instance """
 
-        dict_repr = self.__dict__
-        dict_repr['__class__'] = self.__class__.__name__
-        dict_repr['created_at'] = self.created_at.isoformat()
-        dict_repr['updated_at'] = self.updated_at.isoformat()
-        return dict_repr
+        instance_dict = self.__dict__
+        instance_dict["__class__"] = self.__class__.__name__
+        instance_dict["created_at"] = self.created_at.isoformat()
+        instance_dict["updated_at"] = self.updated_at.isoformat()
 
-#=========================test==================================
-if __name__ == "__main__":
-    base = BaseModel()
-    print(base.created_at)
-    print(base)
-    print(base.updated_at)
-    print(base.id)
-    print()
-    print(base.to_dict)
-    print()
-    print(base.__dict__)
+        return instance_dict
