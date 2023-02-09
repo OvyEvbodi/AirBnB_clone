@@ -4,6 +4,13 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from datetime import datetime
+from models.user import User
+from models.amenity import Amenity
+from models.place import Place
+from models.city import City
+from models.state import State
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,6 +19,9 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
+    __valid_classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
+                       "State": State, "City": City, "Amenity": Amenity,
+                       "Review": Review}
 
     def do_EOF(self, line):
         """End Of File"""
@@ -27,59 +37,61 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """Creates a new instance of BaseModel,
-        saves it (to the JSON file) and prints the id
+        and saves it (to the JSON file) and prints the id
         """
         if not line:
             print("** class name missing **")
-        elif  not isinstance(line, BaseModel):
+        elif line not in HBNBCommand.__valid_classes:
+            print(line, type(line))
             print("** class doesn't exist **")
         else:
-            new_obj = eval[line]()
+            new_obj = eval(line + "()")
             new_obj.save()
             print(new_obj.id)
 
-    def do_show(self):
+    def do_show(self, line):
         """Prints the string representation of
         an instance based on the class name and id
         """
         if line:
-            class_name, class_id = line.split(" ")
-            if not class_name:
-                print("** class name missing **")
-            elif not isinstance(class_name, BaseModel):
+            args = line.split(" ")
+            if args[0] not in HBNBCommand.__valid_classes:
                 print("** class doesn't exist **")
             else:
-                if not class_id:
+                if len(args) < 2:
                     print("** instance id missing **")
                 else:
                     for key, value in storage.all().items():
-                        if class_id == value.id:
+                        if args[1] == value.id:
                             print(str(value))
                             return
                     print("** no instance found **")
-    def do_destroy(self):
+        else:
+            print("** class name missing **")
+
+    def do_destroy(self, line):
         """Deletes an instance based on the class name
         and id (save the change into the JSON file)
         """
         if line:
-            class_name, class_id = line.split(" ")
-            if not class_name:
-                print("** class name missing **")
-            elif not isinstance(class_name, BaseModel):
+            args = line.split(" ")
+            if args[0] not in HBNBCommand.__valid_classes:
                 print("** class doesn't exist **")
             else:
-                if not class_id:
+                if len(args) < 2:
                     print("** instance id missing **")
                 else:
                     dict_repr = storage.all()
                     for key, value in dict_repr.items():
-                        if class_id == value.id:
+                        if args[1] == value.id:
                             del dict_repr[key]
                             storage.save()
                             return
                     print("** instance id missing **")
+        else:
+            print("** class name missing **")
 
-    def do_all(self):
+    def do_all(self, line):
         """Prints all string representation of all instances
         based or not on the class name
         """
@@ -87,19 +99,46 @@ class HBNBCommand(cmd.Cmd):
             for key, value in storage.all().items():
                 print(str(value))
         else:
-            if isinstance(line, BaseModel)
+            if line in HBNBCommand.__valid_classes:
                 for key, value in storage.all().items():
-                    if line == value['__class__']:
+                    if line == key.split(".")[0]:
                         print(str(value))
 
-    def do_update(self):
+    def do_update(self, line):
         """Updates an instance based on the class name and id by adding
         or updating attribute (save the change into the JSON file).
         Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com
-        """"
-        pass
+        """
+        if line:
+            args = line.split(" ")
+            if args[0] in HBNBCommand.__valid_classes:
+                if len(args) >= 2:
+                    found = False
+                    for key, value in storage.all().items():
+                        if args[1] == value.id:
+                            found = True
+                            dict_key = key
+                            break
+                    if len(args) >= 3:
+                        if len(args) >= 4:
+                            obj_repr = storage.all()
+                            attribute = args[2]
+                            value = args[3].split("\"")[1]
+                            setattr(obj_repr[dict_key], attribute, value)
+                            obj_repr[dict_key].save()
+                        else:
+                            print("** value missing **")
+                    else:
+                        print("** attribute name missing **")
+                    if not found:
+                        print("** no instance found **")
+                else:
+                    print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
 
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
