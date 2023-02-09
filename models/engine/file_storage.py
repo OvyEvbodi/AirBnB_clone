@@ -9,15 +9,7 @@ import os
 
 class FileStorage:
     """serializes instances to a JSON file
-    and deserializes JSON file to instances
-
-    Attributes:
-        file_path (str): the path to the JSON file
-        __objects (dictionary): empty but will store all objects
-        by <class name>.id
-        (ex: to store a BaseModel object with id=12121212,
-        the key will be BaseModel.12121212)
-    """
+    and deserializes JSON file to instances"""
 
     __file_path = os.path.join(os.getcwd(), "file_storage.json")
     __objects = {}
@@ -28,7 +20,7 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id
+        """sets a new object
 
         Args:
             obj (BaseModel): a ``BaseModel`` instance
@@ -38,20 +30,41 @@ class FileStorage:
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """serializes __objects to the JSON file (path: __file_path)"""
+        """serializes an objects to the JSON file"""
 
         dict_repr = {}
         for key, value in FileStorage.__objects.items():
             dict_repr[key] = value.to_dict()
-        with open(FileStorage.__file_path, 'a', encoding='utf-8') as f:
+        with open(FileStorage.__file_path, 'w') as f:
             json.dump(dict_repr, f)
 
     def reload(self):
-        """deserializes the JSON file to __objects (only if the JSON file
-        (__file_path) exists otherwise, does nothing"""
+        """Deserializes the JSON file to dictionary of objects if file exists
+        """
 
-        FileStorage.__objects = {}
-        if not os.path.exists(FileStorage.__file_path):
-            return
-        with open(FileStorage.__file_path, 'r') as f:
-            return json.load(f)
+        from models.base_model import BaseModel
+        from models.place import Place
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
+        from models.user import User
+
+        classes = {
+            "BaseModel": BaseModel,
+            "User": User,
+            "Place": Place,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Review": Review
+        }
+        filename = FileStorage.__file_path
+
+        try:
+            with open(filename, "r") as file:
+                data = json.load(file)
+                FileStorage.__objects = {key: classes[value["__class__"]](
+                    **value) for key, value in data.items()}
+        except FileNotFoundError:
+            pass
