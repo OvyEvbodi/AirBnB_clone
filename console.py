@@ -4,7 +4,6 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
-from datetime import datetime
 from models.user import User
 from models.amenity import Amenity
 from models.place import Place
@@ -19,9 +18,12 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
-    __valid_classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
-                       "State": State, "City": City, "Amenity": Amenity,
-                       "Review": Review}
+    # __valid_classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
+    #                    "State": State, "City": City, "Amenity": Amenity,
+    #                    "Review": Review}
+
+    __valid_classes = ["BaseModel", "User", "Place", "State", "City", "Amenity",
+                        "Review"]
 
     def do_EOF(self, line):
         """End Of File"""
@@ -95,19 +97,22 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances
         based or not on the class name
         """
+        all_list = []
         if not line:
             for key, value in storage.all().items():
-                print(str(value))
+                all_list.append(str(value))
+            print(all_list)
         else:
             if line in HBNBCommand.__valid_classes:
                 for key, value in storage.all().items():
                     if line == key.split(".")[0]:
-                        print(str(value))
+                        all_list.append(str(value))
+                print(all_list)
 
     def do_update(self, line):
         """Updates an instance based on the class name and id by adding
         or updating attribute (save the change into the JSON file).
-        Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com
+        Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com"
         """
         if line:
             args = line.split(" ")
@@ -123,7 +128,19 @@ class HBNBCommand(cmd.Cmd):
                         if len(args) >= 4:
                             obj_repr = storage.all()
                             attribute = args[2]
-                            value = args[3].split("\"")[1]
+                            if args[3][0] == '"':
+                                value = args[3].split("\"")[1]
+                                i = 4
+                                while args[i] and args[i][-1] != '"':
+                                    value += " " + args[i]
+                                    i += 1
+                                value += " " + args[i].split("\"")[0]
+                            else:
+                                value = args[3]
+                            obj_attr = getattr(obj_repr[dict_key], attribute)
+                            obj_attr_type = type(obj_attr)
+                            attribute = str(attribute)
+                            #attribute = eval(obj_attr(attribute))
                             setattr(obj_repr[dict_key], attribute, value)
                             obj_repr[dict_key].save()
                         else:

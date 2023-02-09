@@ -36,7 +36,7 @@ class FileStorage:
         for key, value in FileStorage.__objects.items():
             dict_repr[key] = value.to_dict()
         with open(FileStorage.__file_path, 'w') as f:
-            json.dump(dict_repr, f)
+            json.dump(dict_repr, f, indent=4)
 
     def reload(self):
         """Deserializes the JSON file to dictionary of objects if file exists
