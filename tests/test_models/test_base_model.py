@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-"""Test module tests the ``BaseModel`` package, using unittesting"""
+"""Test module tests the ``BaseModel`` class, using unittesting"""
 
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
-import os
 
 
 class TestBase(unittest.TestCase):
@@ -12,11 +11,11 @@ class TestBase(unittest.TestCase):
     It inherits from unittest's ``TestCase``
 
     A ``BaseModel`` instance will hereafter
-    be simply referred to as "instance"
+    be simply referred to as an "instance"
     """
 
     def test_instance(self):
-        """Check that an instance is created properly"""
+        """Checks that an instance is created properly"""
 
         base1 = BaseModel()
         base2 = BaseModel()
@@ -29,7 +28,7 @@ class TestBase(unittest.TestCase):
         self.assertFalse(isinstance(base3, list))
 
     def test_attributes(self):
-        """Check that an instance
+        """Checks that an instance
         correctly initializes its instance attributes
         """
         base1 = BaseModel()
@@ -49,5 +48,22 @@ class TestBase(unittest.TestCase):
         self.assertFalse(isinstance(base1.id, tuple))
         self.assertFalse(isinstance(base1.id, list))
 
+    def test_to_dict(self):
+        """Checks that instances are converted
+        to dictionary representations
+        """
+        base1 = BaseModel()
+        base_dict = base1.to_dict()
+        base2 = BaseModel(base_dict)
+        self.assertTrue(type(base_dict) == dict)
+        self.assertTrue(type(base2.to_dict()) == dict)
+        self.assertFalse(type(base_dict) != dict)
 
+    def test_docs(self):
+        """Checks that an instance is documented"""
+        base1 = BaseModel()
+        base_dict = base1.to_dict()
+        base2 = BaseModel(base_dict)
+        self.assertTrue(base1.__str__())
+        self.assertTrue(base2.__doc__)
 
