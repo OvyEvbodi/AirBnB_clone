@@ -67,3 +67,6 @@ class TestBase(unittest.TestCase):
         self.assertTrue(base1.__str__())
         self.assertTrue(base2.__doc__)
 
+
+if __name__ == '__main__':
+    unittest.main()
