@@ -7,7 +7,7 @@ from datetime import datetime
 from models.amenity import Amenity
 
 
-class TestBase(unittest.TestCase):
+class TestAmenity(unittest.TestCase):
     """Test class for unittests.
     It inherits from unittest's ``TestCase``
 
@@ -41,7 +41,6 @@ class TestBase(unittest.TestCase):
         self.assertTrue(type(a1.created_at) == datetime)
         self.assertTrue(type(a2.updated_at) == datetime)
 
-
     def test_attributes(self):
         """Checks that an instance has the correct and complete attributes"""
         a1 = Amenity()
@@ -63,3 +62,7 @@ class TestBase(unittest.TestCase):
         self.assertTrue(a1.updated_at)
         self.assertTrue(type(a1.updated_at) == datetime)
         self.assertTrue(a1.updated_at != a2.updated_at)
+
+
+if __name__ == '__main__':
+    unittest.main()

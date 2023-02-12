@@ -7,13 +7,21 @@ from datetime import datetime
 from models.user import User
 
 
-class TestBase(unittest.TestCase):
+class TestUser(unittest.TestCase):
     """Test class for unittests.
     It inherits from unittest's ``TestCase``
 
     A ``User`` instance will hereafter
     be simply referred to as an "instance"
     """
+
+    def setUp(self):
+        """Runs before every test method"""
+        self.user = User()
+        self.user.email = "user@email.com"
+        self.user.password = "password"
+        self.user.first_name = "John"
+        self.user.last_name = "Doe"
 
     def test_instance(self):
         """Checks that an instance is created properly"""
@@ -93,3 +101,20 @@ class TestBase(unittest.TestCase):
         a_attr = getattr(user1, "__class__")
         self.assertFalse(a_attr == 'User')
         self.assertNotEqual(a_attr, "User")
+
+    def test_save(self):
+        """Test the `save` method"""
+        self.user.save()
+        self.assertNotEqual(self.user.created_at, self.user.updated_at)
+
+    def test_to_dict(self):
+        """Test the `to_dict` method"""
+        user_dict = self.user.to_dict()
+        self.assertEqual(user_dict["email"], "user@email.com")
+        self.assertEqual(user_dict["password"], "password")
+        self.assertEqual(user_dict["first_name"], "John")
+        self.assertEqual(user_dict["last_name"], "Doe")
+
+
+if __name__ == '__main__':
+    unittest.main()
