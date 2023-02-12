@@ -14,7 +14,7 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
-    intro = "----Welcome to hbnb!----\nEnter \"help\" or \"?\" to get started."
+    # intro = "----Welcome to hbnb!----\nEnter \"help\" or \"?\" to get started."
 
     __valid_classes = ["BaseModel", "User", "Place", "State", "City",
                        "Amenity", "Review"]

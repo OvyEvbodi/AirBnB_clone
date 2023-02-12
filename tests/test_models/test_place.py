@@ -7,7 +7,7 @@ from datetime import datetime
 from models.place import Place
 
 
-class TestBase(unittest.TestCase):
+class TestPlace(unittest.TestCase):
     """Test class for unittests.
     It inherits from unittest's ``TestCase``
 
@@ -40,7 +40,6 @@ class TestBase(unittest.TestCase):
         self.assertFalse(type(p1) == BaseModel)
         self.assertTrue(type(p1.created_at) == datetime)
         self.assertTrue(type(p2.updated_at) == datetime)
-
 
     def test_attributes(self):
         """Checks that an instance has the correct and complete attributes"""
@@ -129,3 +128,7 @@ class TestBase(unittest.TestCase):
         a_attr = getattr(p2, "__class__")
         self.assertFalse(a_attr == 'Place')
         self.assertNotEqual(a_attr, "Place")
+
+
+if __name__ == '__main__':
+    unittest.main()

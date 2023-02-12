@@ -7,7 +7,7 @@ from datetime import datetime
 from models.state import State
 
 
-class TestBase(unittest.TestCase):
+class TestState(unittest.TestCase):
     """Test class for unittests.
     It inherits from unittest's ``TestCase``
 
@@ -69,3 +69,7 @@ class TestBase(unittest.TestCase):
         a_attr = getattr(s2, "__class__")
         self.assertFalse(a_attr == 'State')
         self.assertNotEqual(a_attr, "State")
+
+
+if __name__ == '__main__':
+    unittest.main()
