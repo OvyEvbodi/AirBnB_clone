@@ -111,10 +111,11 @@ class HBNBCommand(cmd.Cmd):
 
         dict_repr = storage.all()
         for key, value in dict_repr.items():
-            if args[1] == value.id:
-                del dict_repr[key]
-                storage.save()
-                return
+            if args[0] == key.split(".")[0]:
+                if args[1] == value.id:
+                    del dict_repr[key]
+                    storage.save()
+                    return
         print("** no instance found **")
 
     def help_destroy(self):
