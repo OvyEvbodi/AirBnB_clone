@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
 
         for key, value in storage.all().items():
             if args[1] == value.id:
-                if args[0] == key.split("."):
+                if args[0] == key.split(".")[0]:
                     print(str(value))
                     return
         print("** no instance found **")
