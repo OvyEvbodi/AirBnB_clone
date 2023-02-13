@@ -78,9 +78,10 @@ class HBNBCommand(cmd.Cmd):
             return
 
         for key, value in storage.all().items():
-            if args[1] == value.id:
-                print(str(value))
-                return
+            if args[0] == key.split("."):
+                if args[1] == value.id:
+                    print(str(value))
+                    return
         print("** no instance found **")
 
     def help_show(self):
@@ -282,5 +283,3 @@ class HBNBCommand(cmd.Cmd):
         return super().precmd(new_line)
 
 
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
