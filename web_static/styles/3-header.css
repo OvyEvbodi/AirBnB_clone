@@ -3,13 +3,13 @@ header {
     height: 70px;
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
-    /*display: flex;*/
-    background-image: url("../images/logo.png");
-    background-repeat: no-repeat;
-    padding-left: 20px;
-    /*height: 60px;*/
-    
 }
 .logo {
+    text-indent: -999999px;
     margin-left: 20px;
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    height: 100%;
 }

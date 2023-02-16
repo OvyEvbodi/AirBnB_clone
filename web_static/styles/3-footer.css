@@ -1,12 +1,12 @@
 footer {
     background-color: #FFFFFF;
-    height: 60px;
     width: 100%;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
     border-top: 1px solid #CCCCCC;
     position: absolute;
-    bottom: 0px;
+    bottom: 0px; 
+}
+footer > p {
+    height:60px;
+    line-height: 60px;
+    text-align: center;
 }
