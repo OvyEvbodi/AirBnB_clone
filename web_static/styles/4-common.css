@@ -6,6 +6,10 @@
     font-size: 14px;
     font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+body {
+    min-height: 100vh;
+    position: relative;
+}
 section {
     margin-bottom: 2rem;
 }
