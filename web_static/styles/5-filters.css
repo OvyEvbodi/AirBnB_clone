@@ -25,3 +25,22 @@ body > div > .filters > button {
 body > div > .filters > button:hover {
     opacity: 0.9;
 }
+.locations, .amenities {
+    display: inline-block;
+    height: 100%;
+    width: 25%;  
+}
+.locations > h3, .amenities > h3 {
+    font-weight: 600;
+    margin: 0;
+    padding: 7px 0 0 16px;
+}
+.locations > h4, .amenities > h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+    padding-left: 16px;
+}
+.locations {
+    border-right: 1px solid #DDDDDD;
+}

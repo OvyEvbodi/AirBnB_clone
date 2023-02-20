@@ -32,7 +32,7 @@ class FileStorage:
 
         with open(FileStorage.__file_path, "w") as file:
             json.dump({key: obj.to_dict()
-                      for key, obj in FileStorage.__objects.items()}, file)
+                      for key, obj in FileStorage.__objects.items()}, file, indent=4)
 
     def reload(self):
         """Deserializes the JSON file to dictionary of objects if file exists

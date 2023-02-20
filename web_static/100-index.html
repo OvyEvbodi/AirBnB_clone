@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width">
+        <title>hbnb</title>
+        <link rel="stylesheet" href="styles/4-common.css">
+        <link rel="stylesheet" href="styles/3-header.css">
+        <link rel="stylesheet" href="styles/3-footer.css">
+        <link rel="stylesheet" href="styles/6-filters.css">
+        <link rel="stylesheet" href="styles/100-places.css">
+        <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    </head>
+    <body>
+        <header>
+            <h1 class="logo">hbnb logo</h1>
+        </header>
+        <div class="container">
+<!--...Filters section starts................................-->
+            <section class="filters">
+                <div class="locations dropdown">
+                    <div class="dropdown_btn">
+                        <h3 class="filters_title">States</h3>
+                        <h4 class="filters_subtitle">Lorem ipsum dolor</h4>
+                    </div>
+                    <div class="dropdown_content">
+                        <ul class="popover">
+                            <li><h2>Lagos</h2>
+                                <ul>
+                                    <li>Ikotun</li>
+                                    <li>Awoyaya</li>
+                                </ul>
+                            </li>
+                            <li><h2>Benue</h2>
+                                <ul>
+                                    <li>Makurdi</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="amenities dropdown">
+                    <div class="dropdown_btn">
+                        <h3 class="filters_title">Amenities</h3>
+                        <h4 class="filters_subtitle">Lorem ipsum, dolor</h4>
+                    </div>
+                    <div class="dropdown_content">
+                        <ul class="popover">
+                            <li>Heating</li>
+                            <li>Wi-Fi</li>
+                            <li>Parking</li>
+                            <li>Spa</li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="search_btn">Search</button>
+            </section>
+<!--.......Places section starts.......................-->
+            <section class="places">
+                <div>
+                    <h1 class="section_title">Places</h1>
+                </div>
+                <article class="places_container">
+                    <div class="place">
+                        <div class="name_price">
+                            <h2>Bali Villa</h2>
+                            <div class="price_by_night">
+                                <p>$28</p>
+                            </div>
+                        </div>
+                        <div class="information">
+                            <div class="info_summary max_guest">
+                                <div>
+                                    <i class="icon"></i>
+                                    <p>2 guests</p>
+                                </div>
+                            </div>
+                            <div class="info_summary number_rooms">
+                                <div>
+                                    <i class="icon"></i>
+                                    <p>3 baths</p>
+                                </div>
+                            </div>
+                            <div class="info_summary number_bathrooms">
+                                <div>
+                                    <i class="icon"></i>
+                                    <p>4 bedrooms</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <p><b>Owner: </b><span>Cosmic Gee</span></p>
+                        </div>
+                        <div class="description">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut aliquam lorem. 
+                                Fusce tempor viverra massa, quis eleifend est fermentum vitae. Nunc vel mauris ac mauris dictum pulvinar rutrum id quam. 
+                                Aliquam id consectetur ex. Fusce a nibh tellus. Fusce tempor ipsum eget sapien consequat vestibulum.
+                            </p>
+                        </div>
+                        <div class="amenities_section">
+                            <div class="amenities_head">
+                                <h2>Amenities</h2>
+                            </div>
+                            <div class="amenity_wrap">
+                                <ul>
+                                    <li class="amenities_list"><i class="amenities_icon pet"></i><span>pets</span></li>
+                                    <li class="amenities_list"><i class="amenities_icon tv"></i><span>tv</span></li>
+                                    <li class="amenities_list"><i class="amenities_icon wifi"></i><span>Wi-Fi</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="reviews">
+                            <div class="reviews_head">
+                                <h2>3 Reviews</h2>
+                            </div>
+                            <div class="review_wrap">
+                                <ul>
+                                    <li class="review">
+                                        <h3>From Star, the 27th January 2022</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut aliquam lorem.</p>
+                                    </li>
+                                    <li class="review">
+                                        <h3>From Achillea, the 13th September 2022</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </li>
+                                    <li class="review">
+                                        <h3>From Vani, the 27th February 2023</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut aliquam lorem.
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut aliquam lorem. 
+                                            Fusce tempor viverra massa, quis eleifend est fermentum vitae. Nunc vel mauris ac mauris dictum pulvinar rutrum id quam. 
+                                            Aliquam id consectetur ex. Fusce a nibh tellus. Fusce tempor ipsum eget sapien consequat vestibulum.
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <div class="name_price">
+                            <h2>Santo Lounge</h2>
+                            <div class="price_by_night">
+                                <p>$24</p>
+                            </div>
+                        </div>
+                        <div class="information">
+                            <div class="info_summary max_guest">
+                                <div>
+                                    <i class="icon"></i>
+                                    <p>2 guests</p>
+                                </div>
+                            </div>
+                            <div class="info_summary number_rooms">
+                                <div>
+                                    <i class="icon"></i>
+                                    <p>3 baths</p>
+                                </div>
+                            </div>
+                            <div class="info_summary number_bathrooms">
+                                <div>
+                                    <i class="icon"></i>
+                                    <p>4 bedrooms</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <p><b>Owner: </b><span>Cosmic Gee</span></p>
+                        </div>
+                        <div class="description">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut aliquam lorem. 
+                                Fusce tempor viverra massa, quis eleifend est fermentum vitae. Nunc vel mauris ac mauris dictum pulvinar rutrum id quam. 
+                                Aliquam id consectetur ex. Fusce a nibh tellus. Fusce tempor ipsum eget sapien consequat vestibulum.
+                            </p>
+                        </div>
+                        <div class="amenities_section">
+                            <div class="amenities_head">
+                                <h2>Amenities</h2>
+                            </div>
+                            <div class="amenity_wrap">
+                                <ul>
+                                    <li class="amenities_list"><i class="amenities_icon pet"></i><span>pets</span></li>
+                                    <li class="amenities_list"><i class="amenities_icon tv"></i><span>tv</span></li>
+                                    <li class="amenities_list"><i class="amenities_icon wifi"></i><span>Wi-Fi</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="reviews">
+                            <div class="reviews_head">
+                                <h2>3 Reviews</h2>
+                            </div>
+                            <div class="review_wrap">
+                                <ul>
+                                    <li class="review">
+                                        <h3>From Star, the 27th January 2022</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut aliquam lorem.</p>
+                                    </li>
+                                    <li class="review">
+                                        <h3>From Achillea, the 13th September 2022</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </li>
+                                    <li class="review">
+                                        <h3>From Vani, the 27th February 2023</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut aliquam lorem.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <div class="name_price">
+                            <h2>Tokyo Inn</h2>
+                            <div class="price_by_night">
+                                <p>$52</p>
+                            </div>
+                        </div>
+                        <div class="information">
+                            <div class="info_summary max_guest">
+                                <div>
+                                    <i class="icon"></i>
+                                    <p>2 guests</p>
+                                </div>
+                            </div>
+                            <div class="info_summary number_rooms">
+                                <div>
+                                    <i class="icon"></i>
+                                    <p>3 baths</p>
+                                </div>
+                            </div>
+                            <div class="info_summary number_bathrooms">
+                                <div>
+                                    <i class="icon"></i>
+                                    <p>4 bedrooms</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user">
+                            <p><b>Owner: </b><span>Cosmic Gee</span></p>
+                        </div>
+                        <div class="description">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut aliquam lorem. 
+                                Fusce tempor viverra massa, quis eleifend est fermentum vitae. Nunc vel mauris ac mauris dictum pulvinar rutrum id quam. 
+                                Aliquam id consectetur ex. Fusce a nibh tellus. Fusce tempor ipsum eget sapien consequat vestibulum.
+                            </p>
+                        </div>
+                        <div class="amenities_section">
+                            <div class="amenities_head">
+                                <h2>Amenities</h2>
+                            </div>
+                            <div class="amenity_wrap">
+                                <ul>
+                                    <li class="amenities_list"><i class="amenities_icon pet"></i><span>pets</span></li>
+                                    <li class="amenities_list"><i class="amenities_icon tv"></i><span>tv</span></li>
+                                    <li class="amenities_list"><i class="amenities_icon wifi"></i><span>Wi-Fi</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="reviews">
+                            <div class="reviews_head">
+                                <h2>3 Reviews</h2>
+                            </div>
+                            <div class="review_wrap">
+                                <ul>
+                                    <li class="review">
+                                        <h3>From Star, the 27th January 2022</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut aliquam lorem.</p>
+                                    </li>
+                                    <li class="review">
+                                        <h3>From Achillea, the 13th September 2022</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </li>
+                                    <li class="review">
+                                        <h3>From Vani, the 27th February 2023</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ut aliquam lorem.</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </div>
+        <footer>
+            <p>Best School</p>
+        </footer>
+    </body>
+</html>
